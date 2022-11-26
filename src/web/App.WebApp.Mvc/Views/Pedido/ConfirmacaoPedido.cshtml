@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Pedido confirmado com sucesso!";
+}
+
+<div class="container">  
+
+    <div class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <span class="icon-check_circle display-3 text-success"></span>
+                    <h3 class="display-3 text-black">Agradecemos Por Confiar Na Gente :)</h3>
+                    <p class="lead mb-5">Seu pedido foi confirmado com sucesso</p>
+                    <a asp-controller="Catalogo" asp-action="Index" class="btn btn-outline-info">Voltar Para Home</a>
+                    <a asp-controller="Pedido" asp-action="MeusPedidos" class="btn btn-outline-success">Ir Para Meus Pedidos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts 
+{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

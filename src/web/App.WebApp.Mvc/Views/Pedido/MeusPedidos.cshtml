@@ -1,0 +1,61 @@
+﻿@using App.WebApp.Mvc.Helpers
+@model IEnumerable<App.WebApp.Mvc.Models.PedidoViewModel>
+
+@{
+    ViewData["Title"] = "Meus Pedidos";
+}
+
+<div class="site-wrap">
+    <div class="site-section">
+        <div class="container">
+
+            <vc:summary></vc:summary>
+
+            <h4 class="text-center text-dark">Seus pedidos realizados: <span class="icon icon-shopping-cart"></span></h4>
+            <hr style="padding-bottom:45px" />
+
+            @foreach (var pedido in Model.OrderByDescending(lbda => lbda.Data))
+            {
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        <div class="site-blocks-table">
+                            <h5 class="text-dark font-weight-bold">Código do pedido: #@pedido.Codigo</h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr style="background:#c3c3c3">
+                                        <td class="col-lg-4 font-weight-bold">Status: @Html.Raw(this.ExibeStatus(pedido.Status))</td>
+                                        <td class="col-lg-4 font-weight-bold">@pedido.Data.ToLongDateString()</td>
+                                        <td class="col-lg-4 font-weight-bold"><span class="icon-credit-card text-success"></span> &nbsp;Pagamento em cartão de credito</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in pedido.PedidoItems)
+                                    {
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <img src="https://api-produtos-nerdstore.azurewebsites.net/imagens/@item.Imagem" alt="Image" class="img-fluid" width="125">
+                                            </td>
+                                            <td>
+                                                <span class="h5">@item.Nome</span>
+                                            </td>
+                                            <td>
+                                                <span class="h5">@this.UnidadesPorProdutoValorTotal(item.Quantidade, item.Valor)</span>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td colspan="2" class="text-left h5">Endereço de entrega: @pedido.Endereco</td>
+                                        <td colspan="3" class="text-center h5">
+                                            Valor do pedido: <span class="text-success">R$ @pedido.ValorTotal</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

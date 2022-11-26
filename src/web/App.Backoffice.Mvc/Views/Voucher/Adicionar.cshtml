@@ -1,0 +1,89 @@
+﻿@model App.Backoffice.Mvc.Models.VoucherViewModel
+
+@{
+    ViewData["Title"] = "Adicionar novo cupom de desconto";
+}
+
+<h4 style="margin-top:50px;">@ViewData["Title"] </h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Adicionar">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+           @* <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>*@
+            
+            <div class="form-group">
+                <label asp-for="Codigo" class="control-label"></label>
+                <input asp-for="Codigo" class="form-control" />
+                <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="TipoDesconto" class="control-label"></label>
+                @*<input asp-for="TipoDesconto" class="form-control" />*@
+                <select asp-for="TipoDesconto" class="form-control">
+                    <option></option>
+                    <option value="1">Em valor (R$)</option>
+                    <option value="2">Em Porcentagem (%)</option>
+                </select>
+                <span asp-validation-for="TipoDesconto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Percentual" class="control-label"></label>
+                <input asp-for="Percentual" class="form-control" />
+                <span asp-validation-for="Percentual" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="ValorDesconto" class="control-label"></label>
+                <input asp-for="ValorDesconto" class="form-control" />
+                <span asp-validation-for="ValorDesconto" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Quantidade" class="control-label"></label>
+                <input asp-for="Quantidade" class="form-control" />
+                <span asp-validation-for="Quantidade" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="DataCriacao" class="control-label"></label>
+                <input asp-for="DataCriacao" class="form-control" />
+                <span asp-validation-for="DataCriacao" class="text-danger"></span>
+            </div>
+            
+          @*  <div class="form-group">
+                <label asp-for="DataUtilizacao" class="control-label"></label>
+                <input asp-for="DataUtilizacao" class="form-control" />
+                <span asp-validation-for="DataUtilizacao" class="text-danger"></span>
+            </div>*@
+            
+            <div class="form-group">
+                <label asp-for="DataValidade" class="control-label"></label>
+                <input asp-for="DataValidade" class="form-control" />
+                <span asp-validation-for="DataValidade" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                <a class="btn btn-danger" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

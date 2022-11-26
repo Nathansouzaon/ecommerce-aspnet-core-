@@ -1,0 +1,45 @@
+﻿@using App.Backoffice.Mvc.Extensions
+@model PagedViewModel<ProdutoViewModel>
+
+@{
+    ViewData["Titulo"] = "Produtos Cadastrados na loja";
+}
+
+<h3 style="margin-top:50px;">@ViewData["Titulo"] </h3>
+
+<a class="btn btn-success" asp-action="Adicionar">Cadastrar Novo Produto</a>
+
+<hr />
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Nome</th>
+            <th>Estoque</th>
+            <th>Valor Unitário</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.List.OrderBy(lbda => lbda.Nome).Where(lbda => lbda.Excluido == false))
+        {
+            <tr>
+                <td >
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.QuantidadeEstoque)
+                </td>
+                <td >
+                    @item.Valor.ToString("C")
+                </td>
+                <td class="text-end">
+                    <a class="btn btn-warning" asp-controller="Catalogo" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-primary" asp-controller="Catalogo" asp-action="ProdutoDetalhe" asp-route-id="@item.Id">Detalhes</a>
+                    <a class="btn btn-danger" asp-action="Remover" asp-route-id="@item.Id">Remover</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<vc:paginacao modelo-paginado="@Model"></vc:paginacao>

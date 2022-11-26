@@ -1,0 +1,95 @@
+﻿@model App.WebApp.Mvc.Models.PedidoTransacaoViewModel
+
+@{
+    ViewData["Title"] = "Confirme o seu pedido";
+}
+
+<div class="site-wrap">
+    <div class="site-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <h4 class="mb-3 text-black text-center">Informações Do Pedido <span class="h5 icon icon-check-circle text-success"></span></h4>
+                    <div class="p-3 p-lg-5 border">
+
+                        <table class="table site-block-order-table mb-5">
+                            <thead class="thead thead-dark bg-gray">
+                                <tr>
+                                    <th class="text-center">Produtos</th>
+                                    <th class="text-center">Descrição</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    @foreach (var item in Model.Itens)
+                                    {
+                                        <tr>
+                                            <td class="text-center"><img width="120" alt="@item.Nome" src="https://api-produtos-nerdstore.azurewebsites.net/imagens/@item.Imagem" /></td>
+                                            <td class="text-center">@item.Nome</td>
+                                            <td class="text-center">R$ @(item.Valor * item.Quantidade) (@item.Quantidade unidades x R$ @item.Valor p/ unidade)</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                        <table>
+                            <tr>
+                                <th class="text-info">Resumo do Pedido &nbsp;<span class="icon icon-money"></span></th>
+                            </tr>
+                            <tr>
+                                <td class="text-black font-weight-bold"><strong>Valor Total Pedido</strong></td>
+                                <td class="text-black font-weight-bold"><strong>R$ @(Model.ValorTotal + Model.Desconto)</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="text-black font-weight-bold"><strong>Descontos</strong></td>
+                                <td class="text-success font-weight-bold"><strong>R$ @Model.Desconto</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="text-black font-weight-bold"><strong>Cupom Usado</strong></td>
+                                <td class="text-success font-weight-bold"><strong>@(Model.VoucherCodigo ?? "R$ 0,00")</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="text-black font-weight-bold"><strong>Valor Final</strong></td>
+                                <td class="text-black font-weight-bold"><strong>R$ @Model.ValorTotal</strong></td>
+                            </tr>
+                        </table>
+
+                        <div class="form-group">
+                            <partial name="_Endereco" model="Model" />
+                            @{
+                                if (Model.Endereco != null)
+                                {
+                                    <div class="text-center">
+                                        <a class="btn btn-outline-success btn-lg" asp-controller="Pedido" asp-action="Pagamento">
+                                        Confirmo, Ir para pagamento</a>
+                                        <a class="btn btn-outline-info btn-lg" href="javascript:void(0)" data-toggle="modal" data-target="#enderecoModal">
+                                            Alterar Endereco
+                                        </a>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="_NovoEndereco" />
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            BuscaCep();
+        });
+    </script>
+
+}

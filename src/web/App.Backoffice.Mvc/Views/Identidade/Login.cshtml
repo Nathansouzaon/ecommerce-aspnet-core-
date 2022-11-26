@@ -1,0 +1,45 @@
+﻿@model App.Backoffice.Mvc.Models.UsuarioLogin
+@{
+    ViewData["Title"] = "Entrar";
+}
+
+<div class="container">
+
+    <vc:summary></vc:summary>
+
+    <div class="row">
+        <div class="col-lg-12 mt-150 mb-150">
+            <div>
+                <h2 class="h3 mb-3 text-black text-center" style="margin-top:80px">Entrar</h2>
+                <div class="p-3 p-lg-5 border" style="margin-left:150px;margin-right:150px;margin-bottom:150px;">
+                    <form asp-action="Login" asp-controller="Identidade">
+                        <div class="form-group row">
+
+                            <div class="col-md-12">
+                                <label for="c_fname" class="text-black">Email</label>
+                                <input type="text" class="form-control" asp-for="Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="c_fname" class="text-black">Senha</label>
+                                <input type="password" class="form-control" asp-for="Senha">
+                                <span asp-validation-for="Senha" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12 text-center mt-3">
+                                <button type="submit" class="btn btn-info">Entrar</button>
+                                @*<a asp-controller="Identidade" asp-action="Registro" class="btn btn-secondary" style="padding-top:10px;"> Não possuo uma conta</a>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

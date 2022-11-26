@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Mobile.Maui.Views.LoginPage"
+             xmlns:ViewModel="clr-namespace:App.Mobile.Maui.ViewModels"
+             x:DataType="ViewModel:LoginPageViewModel"
+             xmlns:Helpers="clr-namespace:App.Mobile.Maui.Helpers"
+             NavigationPage.HasNavigationBar="False"
+             Padding="15">
+    
+    <VerticalStackLayout Spacing="15" VerticalOptions="Center">
+    
+        <Label 
+            Text="Entre com seus dados, para realizar login"
+            VerticalOptions="Center" 
+            FontSize="Large"
+            HorizontalOptions="Center" />
+
+        <Label FontFamily="MaterialDesignIcons" Text="{x:Static Helpers:MaterialDesignIconFonts.AccountArrowRight}"
+               FontSize="60" HorizontalOptions="Center"/>
+
+        <Entry Placeholder="Informe seu email" Keyboard="Text" Text="{Binding Email}"
+               BackgroundColor="LightGrey" PlaceholderColor="White">
+        </Entry>
+        
+        <Entry Placeholder="informe sua senha" Keyboard="Text" Text="{Binding Senha}"
+               BackgroundColor="LightGrey" PlaceholderColor="White"/>
+
+        <Button Text="Entrar" Command="{Binding LoginCommand}" BackgroundColor="ForestGreen" HorizontalOptions="Center" Padding="50,10">
+            <Button.ImageSource>
+                <FontImageSource FontFamily="MaterialDesignIcons" 
+                                 Glyph="{x:Static Helpers:MaterialDesignIconFonts.Login}" Size="25"/>
+            </Button.ImageSource>
+        </Button>
+        
+        <Label Text="Não possuo uma conta" HorizontalTextAlignment="Center" Margin="0,15" FontSize="Medium" FontAttributes="Bold">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding IrRegistroCommand}"/>
+            </Label.GestureRecognizers>
+        </Label>
+
+    </VerticalStackLayout>
+</ContentPage>

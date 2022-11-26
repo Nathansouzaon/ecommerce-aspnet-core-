@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Mobile.Maui.Views.HomePage"
+             xmlns:ViewModel="clr-namespace:App.Mobile.Maui.ViewModels"
+             xmlns:Model="clr-namespace:App.Mobile.Maui.Models"
+             x:DataType="ViewModel:HomePageViewModel"
+             NavigationPage.HasNavigationBar="False"
+             Padding="15,30">
+    
+        <Grid>
+            <CollectionView ItemsSource="{Binding Produtos}" SelectedItem="{Binding ProdutoDetalheCommand}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:Produto">
+                        <VerticalStackLayout Margin="0,20">
+                            <Image Source="{Binding Imagem, StringFormat='http://192.168.1.7:6201/imagens/{0}'}" WidthRequest="150" HeightRequest="150">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:HomePageViewModel}},
+                                    Path=ProdutoDetalheCommand}" CommandParameter="{Binding Source={RelativeSource Mode=Self}, Path=BindingContext}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label Text="{Binding Descricao}" HorizontalOptions="Center" FontSize="Medium"/>
+                            <Label Text="{Binding Valor, StringFormat='{0:C2}'}" HorizontalOptions="Center" FontSize="Body" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+    </Grid>
+</ContentPage>

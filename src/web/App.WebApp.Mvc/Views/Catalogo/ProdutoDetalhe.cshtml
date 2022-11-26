@@ -1,0 +1,59 @@
+﻿@using App.WebApp.Mvc.Extensions
+@using App.WebApp.Mvc.Helpers
+@model App.WebApp.Mvc.Models.ProdutoViewModel
+@{
+    ViewData["Title"] = Model.Nome;
+}
+
+<div class="site-wrap">
+    <div class="site-section">
+        <div class="container">
+
+            <vc:summary></vc:summary>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="item-entry">
+                        <a href="#" class="product-item md-height bg-white d-block">
+                            <img src="https://api-produtos-nerdstore.azurewebsites.net/imagens/@Model.Imagem" alt="Image" class="img-fluid">
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+
+                    <form asp-controller="Carrinho" asp-action="AdicionarItemCarrinho" method="post">
+
+                        <input type="hidden" id="ProdutoId" name="ProdutoId" value="@Model.Id" />
+
+                        <h2 class="text-black">@Model.Nome</h2>
+                        <p>@Model.Descricao</p>
+                        <p>Estoque: @Model.QuantidadeEstoque Unidades</p>
+                        <p><strong class="text-black h3">R$ @Model.Valor</strong></p>
+                        <div class="mb-5">
+                            <div class="input-group mb-3" style="max-width: 120px;">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary js-btn-minus" type="button">&minus;</button>
+                                </div>
+                                <input id="Quantidade" name="Quantidade" type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary js-btn-plus" type="button">&plus;</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (Model.QuantidadeEstoque <= 0)
+                        {
+                            <span class="text-danger h6 font-weight-bold mb-2">PRODUTO ESGOTADO!</span><br />
+                            <a style="padding-top:11px" type="reset" class="btn btn-outline-success" asp-controller="Catalogo" asp-action="Index">Continuar Comprando</a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-info" type="submit">Adicionar ao carrinho</button>
+                            <a style="padding-top:11px" type="reset" class="btn btn-outline-success" asp-controller="Catalogo" asp-action="Index">Continuar Comprando</a>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

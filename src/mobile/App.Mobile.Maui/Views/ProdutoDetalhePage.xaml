@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Mobile.Maui.Views.ProdutoDetalhePage"
+             xmlns:ViewModel="clr-namespace:App.Mobile.Maui.ViewModels"
+             xmlns:Helpers="clr-namespace:App.Mobile.Maui.Helpers"
+             x:DataType="ViewModel:ProdutoDetalhePageViewModel"
+             Padding="15"
+             Title="{Binding Produto.Nome, StringFormat='Detalhes de {0}'}">
+    
+    <VerticalStackLayout>
+        <Label HorizontalOptions="Center" FontSize="Title" FontAttributes="Bold" Text="{Binding Produto.Nome}"/>
+        
+        <Image HeightRequest="300" WidthRequest="300" 
+               Source="{Binding Produto.Imagem, StringFormat='http://192.168.1.7:6201/imagens/{0}'}"/>
+
+        <Label Text="{Binding Produto.Descricao}" HorizontalOptions="Center" FontSize="Large"/>
+
+        <Label Text="{Binding Produto.Valor, StringFormat='{0:C2}'}" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+        <Label Text="{Binding Produto.QuantidadeEstoque, StringFormat='Apenas {0} unidades!'}" HorizontalOptions="Center"
+               FontSize="Large" FontAttributes="Italic"/>
+
+        <Button Text="Adicionar ao carrinho" BackgroundColor="DarkOrange" HorizontalOptions="Center" Margin="0,20" Padding="15">
+            <Button.ImageSource>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="{x:Static Helpers:MaterialDesignIconFonts.CartCheck}" Size="25"/>
+            </Button.ImageSource>
+        </Button>
+    </VerticalStackLayout>
+</ContentPage>

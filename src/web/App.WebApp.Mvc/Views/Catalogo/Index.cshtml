@@ -1,0 +1,64 @@
+﻿@using App.WebApp.Mvc.Extensions
+@using App.WebApp.Mvc.Helpers
+@model PagedViewModel<ProdutoViewModel>
+
+@{
+    ViewData["Title"] = "Todos os produtos";
+}
+
+<div class="site-section">
+    <div data-aos="fade" style="margin-top:-80px;background-color:#f9f9f9">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ml-auto order-md-2 align-self-start">
+                    <div class="site-block-cover-content" style="padding-top:125px">
+                        <h2 class="text-black font-weight-bold">NerdShop A Maior Loja Nerd Do Brasil</h2>
+                        <h5 class="text-black font-weight-bold">fique a vontade e conheça nossa coleção ;)</h5>
+                        <p><a href="#" class="btn btn-black rounded-0">Comprar Agora</a></p>
+                    </div>
+                </div>
+                <div class="col-md-6 order-1 align-self-end pt-5">
+                    <img src="~/files/images/imagemCapaBanner.png" alt="Image" class="img-fluid" width="300">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <vc:summary></vc:summary>
+        <div class="row">
+            <div class="title-section mb-5 mt-5 col-12">
+                <h2 class="text-uppercase">Nossos <span style="color:#ff4000">Produtos</span></h2>
+            </div>
+        </div>
+        <div class="row">
+            @{
+                @foreach (var produto in Model.List.OrderByDescending(lbda => lbda.Nome).Where(lbda => lbda.Excluido == false))
+                {
+                    <div class="col-lg-4 col-md-6 item-entry mb-4">
+                        <a class="product-item md-height bg-white d-block"
+                            asp-controller="Catalogo" asp-action="ProdutoDetalhe" asp-route-id="@produto.Id">
+                            <img src="https://api-produtos-nerdstore.azurewebsites.net/imagens/@produto.Imagem" width="400" alt="produto" class="img-fluid">
+                        </a>
+                        <h2 class="item-title"><a asp-controller="Catalogo" asp-action="ProdutoDetalhe" asp-route-id="@produto.Id">@produto.Nome</a></h2>
+                        <strong class="item-price">R$ @produto.Valor</strong><br>
+
+                        @if(produto.QuantidadeEstoque <= 0){
+                            <span class="text-danger h6 font-weight-bold">PRODUTO ESGOTADO!</span>
+                        }
+
+                        <div class="star-rating">
+                            <span class="icon-star2 text-warning"></span>
+                            <span class="icon-star2 text-warning"></span>
+                            <span class="icon-star2 text-warning"></span>
+                            <span class="icon-star2 text-warning"></span>
+                            <span class="icon-star2 text-warning"></span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <vc:paginacao modelo-paginado="@Model"></vc:paginacao>
+    </div>
+</div>

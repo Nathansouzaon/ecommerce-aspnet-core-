@@ -1,0 +1,68 @@
+﻿@model App.WebApp.Mvc.Models.UsuarioRegistro
+
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<div class="container">
+
+    <vc:summary></vc:summary>
+
+    <div class="row">
+        <div class="col-lg-12 mt-150 mb-150">
+            <div>
+                <h2 class="h3 mb-3 text-black text-center" style="margin-top:80px">Cadastrar-se</h2>
+                <div class="p-3 p-lg-5 border" style="margin-left:150px;margin-right:150px;margin-bottom:150px;">
+                    <form asp-action="Registro" asp-controller="Identidade">    
+                        <div class="form-group row">
+
+                            <div class="col-md-12">
+                                <label for="c_fname" class="text-black">Nome</label>
+                                <input type="text" class="form-control" asp-for="Nome">
+                                <span asp-validation-for="Nome" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="c_fname" class="text-black">CPF</label>
+                                <input type="text" class="form-control" asp-for="Cpf" id="Cpf">
+                                <span asp-validation-for="Cpf" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="c_fname" class="text-black">Email</label>
+                                <input type="email" class="form-control" asp-for="Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="c_fname" class="text-black">Senha</label>
+                                <input type="password" class="form-control" asp-for="Senha">
+                                <span asp-validation-for="Senha" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="c_fname" class="text-black">Confirme sua senha</label>
+                                <input type="password" class="form-control" asp-for="SenhaConfirmacao">
+                                <span asp-validation-for="SenhaConfirmacao" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12 text-center mt-3">
+                                <button type="submit" class="btn btn-info">Cadastrar-se</button>
+                                <a asp-controller="Identidade" asp-action="Login" class="btn btn-secondary" style="padding-top:10px;"> Já possuo uma conta</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+    <script src="~/js/mascaras.js"></script>
+
+    <partial name="_ValidationScriptsPartial" />
+}

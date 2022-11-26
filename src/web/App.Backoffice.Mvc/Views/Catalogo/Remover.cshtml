@@ -1,0 +1,48 @@
+﻿@model App.Backoffice.Mvc.Models.ProdutoViewModel
+
+
+@{
+    ViewData["Title"] = "Remover";
+}
+
+<h3 style="margin-top:50px;">Você tem certeza que deseja remover @Model.Nome?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuantidadeEstoque)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuantidadeEstoque)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ativo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ativo)
+        </dd>
+    </dl>
+
+    <form asp-action="Remover">
+        <input type="submit" value="Remover" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-danger">Voltar</a>
+    </form>
+</div>

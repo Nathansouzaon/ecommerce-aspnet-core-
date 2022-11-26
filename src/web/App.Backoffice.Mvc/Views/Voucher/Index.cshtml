@@ -1,0 +1,50 @@
+﻿@model IEnumerable<App.Backoffice.Mvc.Models.VoucherViewModel>
+
+@{
+    ViewData["Titulo"] = "Lista de Vouchers de desconto";
+}
+
+<h3 style="padding-top:50px;">@ViewData["Titulo"] </h3>
+
+<hr />
+<p>
+    <a class="btn btn-success" asp-action="Adicionar">Cadastrar Novo Voucher</a>
+</p>
+
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(lbda => lbda.Excluido == false))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td class="text-end">
+                    <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-primary" asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a>
+                    <a  class="btn btn-danger" asp-action="Remover" asp-route-id="@item.Id">Remover</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

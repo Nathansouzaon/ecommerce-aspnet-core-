@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Mobile.Maui.Views.CadastroPage"
+             xmlns:ViewModel="clr-namespace:App.Mobile.Maui.ViewModels"
+             x:DataType="ViewModel:CadastroPageViewModel"
+             Padding="15"
+             xmlns:Helpers="clr-namespace:App.Mobile.Maui.Helpers">
+    
+    <VerticalStackLayout Spacing="15" VerticalOptions="Center">
+        
+        <Label 
+            Text="Informe seus dados para se cadastrar na loja"
+            VerticalOptions="Center" 
+            FontSize="Large"
+            HorizontalOptions="Center" />
+
+        <Entry Placeholder="informe seu Nome" Keyboard="Text" Text="{Binding Nome}"
+               BackgroundColor="LightGrey" PlaceholderColor="White"/>
+        
+        <Entry Placeholder="informe seu CPF" Keyboard="Numeric" Text="{Binding Cpf}"
+               BackgroundColor="LightGrey" PlaceholderColor="White"/>
+        
+        <Entry Placeholder="informe seu Email" Keyboard="Email" Text="{Binding Email}"
+               BackgroundColor="LightGrey" PlaceholderColor="White"/>
+        
+        <Entry Placeholder="Digite uma Senha" Keyboard="Text" Text="{Binding Senha}"
+               BackgroundColor="LightGrey" PlaceholderColor="White"/>
+        
+        <Entry Placeholder="Confirme a Senha" Keyboard="Text" Text="{Binding SenhaConfirmacao}"
+               BackgroundColor="LightGrey" PlaceholderColor="White"/>
+
+        <Button Text="Cadastrar-se" Command="{Binding RegistroCommand}" BackgroundColor="ForestGreen" HorizontalOptions="Center" Padding="50,10">
+            <Button.ImageSource>
+                <FontImageSource FontFamily="MaterialDesignIcons" 
+                                 Glyph="{x:Static Helpers:MaterialDesignIconFonts.Login}" Size="25"/>
+            </Button.ImageSource>
+        </Button>
+        
+        <Label Text="Já possuo uma conta" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="0,15">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding IrLoginCommand}"/>
+            </Label.GestureRecognizers>
+        </Label>
+
+    </VerticalStackLayout>
+</ContentPage>

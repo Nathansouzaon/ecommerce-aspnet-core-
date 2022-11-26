@@ -1,0 +1,60 @@
+﻿@model App.WebApp.Mvc.Models.PedidoTransacaoViewModel
+
+@{
+    ViewData["Title"] = "Confirme o seu pedido";
+}
+
+<div class="container">
+
+    <vc:summary></vc:summary>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="h3 mb-3 mt-3 text-black text-center">Dados De Pagamento &nbsp;<span class="icon-credit-card-alt h5"></span></h2>
+            <div class="p-3 p-lg-5 border" style="margin-left:100px;margin-right:100px;">
+                <form asp-action="FinalizarPedido" asp-controller="Pedido">
+                    <div class="form-group row">
+
+                        <div class="col-md-12">
+                            <label for="c_fname" class="text-black">Nome Titular<span class="text-danger">*</span></label>
+                            <input type="text" asp-for="NomeCartao" class="form-control"/>
+                            <span asp-validation-for="NomeCartao" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="c_lname" class="text-black">Número Cartão<span class="text-danger">*</span></label>
+                            <input type="text" asp-for="NumeroCartao" class="form-control"/>
+                            <span asp-validation-for="NumeroCartao" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="c_lname" class="text-black">Data De Expiração<span class="text-danger">*</span></label>
+                            <input type="text" asp-for="ExpiracaoCartao" class="form-control" id="ExpiracaoCartao" />
+                            <span asp-validation-for="ExpiracaoCartao" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="c_lname" class="text-black">CVV<span class="text-danger">*</span></label>
+                            <input type="text" asp-for="CvvCartao" class="form-control" maxlength="4" minlength="3"/>
+                            <span asp-validation-for="CvvCartao" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12 text-center mt-3">
+                            <button type="submit" class="btn btn-info">Confirmar</button>
+                            <a asp-controller="Pedido" asp-action="EnderecoEntrega" class="btn btn-secondary" style="padding-top:12px"> Voltar Para Resumo da Compra </a>
+                        </div>
+
+                        <div class="col-md-12 text-center mt-5">
+                            <img src="~/files/images/pagamento.png" width="500" class="text-center" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+    <script src="~/js/mascaras.js"></script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

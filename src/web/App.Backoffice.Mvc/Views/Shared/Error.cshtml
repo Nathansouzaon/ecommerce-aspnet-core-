@@ -1,0 +1,43 @@
+﻿@model ErrorViewModel
+
+@{
+    ViewData["Title"] = "Ocorreu um erro";
+}
+
+@{
+    if (Model.ErroCode == 404)
+    {
+        <div class="full-height-section error-section" style="padding:200px">
+            <div class="full-height-tablecell">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2 text-center">
+                            <div class="error-text">
+                                <i class="far fa-sad-cry"></i>
+                                <h1>Opsss! Houve um problema</h1>
+                                <p>A página que você preocura não existe</p>
+                                <a asp-controller="Catalogo" asp-action="Index" class="boxed-btn">Ir Para Home</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    else if (Model is null)
+    {
+        <div class="text-center">
+            <h2>Ooops! Ocorreu um erro, mas não se preocupe. Nosso time será avisado e iremos corrigir em breve!</h2>
+        </div>
+    }
+    else
+    {
+        ViewData["Title"] = Model.Titulo;
+
+        <div style="padding:200px" class="text-center">
+            <h2>@Html.Raw(Model.Mensagem)</h2>
+        </div>
+
+    }
+}

@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container row" style="margin-top:100px;">
+    
+    <div class="col-12 pb-5">
+        <p class="text-center h1">Painel Administrativo NerdShop Ecommerce</p>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card" style="width: 18rem;border-radius:15px;">
+            <img class="card-img-top" src="~/imagens/voucher-250.png" alt="Card image cap" height="165">
+            <div class="card-body">
+                <h5 class="card-title">Vouchers</h5>
+                <p class="card-text">Gerenciar cupons de descontos.</p>
+                <a asp-controller="Voucher" asp-action="Index" class="btn btn-success">Gerenciar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card" style="width: 18rem;border-radius:15px;">
+            <img class="card-img-top" src="~/imagens/produtos.jpeg" alt="Card image cap" height="165">
+            <div class="card-body">
+                <h5 class="card-title">Produtos</h5>
+                <p class="card-text">Gerenciar controle de produtos.</p>
+                <a asp-controller="Catalogo" asp-action="Index" class="btn btn-success">Gerenciar</a>
+            </div>
+        </div>
+    </div>
+
+     <div class="col-lg-4">
+        <div class="card" style="width: 18rem;border-radius:15px;">
+            <img class="card-img-top" src="~/imagens/desenvolvendo.webp" alt="Card image cap" height="165">
+            <div class="card-body">
+                <h5 class="card-title">Financeiro</h5>
+                <p class="card-text">Controle financeiro de vendas.</p>
+                <a href="#" class="btn btn-warning">(Em Desenvolvimento)</a>
+            </div>
+        </div>
+    </div>
+
+</div>

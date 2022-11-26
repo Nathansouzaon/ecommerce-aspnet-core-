@@ -1,0 +1,18 @@
+﻿@model App.WebApp.Mvc.Models.PedidoTransacaoViewModel
+
+@{
+    if (Model.Endereco == null)
+    {
+        <div class="text-center">
+            <a href="javascript:void(0)" class="btn btn-outline-secondary btn-lg" data-toggle="modal" data-target="#enderecoModal"> <i class="fa fa-location-arrow"></i> Adicionar Endereço</a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12 text-left text-dark font-weight-bold">
+                <p>Entrega: @Model.Endereco.ToString()</p>
+            </div>
+        </div>
+    }
+}
